@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexión SLP | Fibra Óptica y Telecomunicaciones en San Luis Potosí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables de Color y Estilo */
+        :root {
+            --fondo-oscuro: #121212;
+            --texto-claro: #EDEDED;
+            --acento-rojo: #FF3B3B;
+            --gris-medio: #1E1E1E;
+            --sombra-card: 0 4px 15px rgba(255, 59, 59, 0.1);
+            --sombra-nav: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* KEYFRAMES & ANIMATIONS */
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 59, 59, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
+        }
+
+        /* Estilos Base y Tipografía */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding-top: 70px;
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 0;
+        }
+        h1, h2, h3 {
+            color: var(--texto-claro);
+            font-weight: 700;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5em;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--acento-rojo);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        a {
+             color: var(--acento-rojo);
+             text-decoration: none;
+             transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #FF6666;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--gris-medio); 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--sombra-nav);
+        }
+        #header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+        }
+        
+        /* LOGOTIPO SVG ESTILIZADO */
+        #logo {
+            height: 50px; 
+            display: flex;
+            align-items: center;
+        }
+        #logo svg {
+            height: 100%;
+            width: auto;
+            /* Efecto de brillo sutil alrededor del logo */
+            filter: drop-shadow(0 0 2px rgba(0, 123, 255, 0.3)); 
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav a {
+            color: var(--texto-claro);
+            padding: 8px 10px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--acento-rojo);
+            background-color: #333333;
+            border-radius: 4px;
+        }
+        
+        /* Botones y Hover Glow */
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background-color: var(--acento-rojo);
+            color: var(--texto-claro);
+            border: 2px solid var(--acento-rojo);
+            box-shadow: 0 0 15px rgba(255, 59, 59, 0.6), 0 6px 15px rgba(0, 0, 0, 0.8);
+        }
+        .btn-primary:hover {
+            background-color: #e63232;
+            border-color: #e63232;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 59, 59, 1), 0 10px 25px rgba(0, 0, 0, 0.9);
+        }
+        .btn-secondary {
+            background: var(--gris-medio);
+            color: var(--texto-claro);
+            border: 2px solid #555555;
+            border-radius: 5px;
+        }
+        .btn-secondary:hover {
+            background-color: #333333;
+            border-color: var(--acento-rojo);
+            color: var(--acento-rojo);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        #home {
+            background-image: url('https://i.ibb.co/tZ561kR/hero-slp-modern.jpg'); 
+            background-blend-mode: multiply;
+            background-color: rgba(18, 18, 18, 0.9);
+            background-size: cover;
+            background-position: center;
+            color: var(--texto-claro);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #home h1 {
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Grid Responsive */
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: var(--gris-medio); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--sombra-card);
+            transition: transform 0.3s ease;
+        }
+        .card img {
+            filter: drop-shadow(0 0 5px rgba(255, 59, 59, 0.4));
+        }
+
+        /* Iconos con Animación */
+        .animated-icon {
+            transition: transform 0.3s ease;
+            animation: pulse-red 2s infinite;
+        }
+        .animated-icon:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        /* Etiqueta "MÁS VENDIDO" */
+        .plan-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .plan-card.popular {
+            border: 4px solid var(--acento-rojo);
+            background-color: #0A0A0A;
+            box-shadow: 0 0 30px rgba(255, 59, 59, 0.7);
+        }
+        .popular::before {
+            content: '⭐ MÁS VENDIDO';
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background: var(--acento-rojo);
+            color: var(--texto-claro);
+            padding: 5px 40px;
+            font-size: 0.8em;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 10;
+        }
+        
+        /* Footer con Efecto Suave */
+        #contacto {
+            background-color: var(--fondo-oscuro);
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); 
+        }
+        footer {
+            background: var(--gris-medio);
+            color: var(--texto-claro);
+            text-align: center;
+            padding: 35px 0 10px;
+        }
+        
+        /* MAPA INTERACTIVO */
+        .map-placeholder {
+            background-color: #0A0A0A;
+            height: 300px;
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .map-placeholder iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* ESTILOS PARA LA SECCIÓN NOSOTROS */
+        #nosotros .grid-2-col {
+            align-items: flex-start;
+        }
+        #nosotros .mission-vision-card {
+            background: var(--gris-medio);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-left: 5px solid var(--acento-rojo);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #nosotros .mission-vision-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+        }
+        #nosotros .mission-vision-card img {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 8px rgba(255, 59, 59, 0.6));
+        }
+        #nosotros .mission-vision-card h3 {
+            color: var(--acento-rojo);
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            #home-content h1 { font-size: 2.2em; }
+            #home-content p { font-size: 0.9em; }
+            .popular::before {
+                font-size: 0.7em;
+                right: -45px;
+                top: 15px;
+            }
+            #nosotros .mission-vision-card {
+                flex-direction: column;
+                text-align: center;
+                border-left: none;
+                border-top: 5px solid var(--acento-rojo);
+            }
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+            .grid-3-col {
+                grid-template-columns: 1fr;
+            }
+            #header-content {
+                flex-direction: column;
+                padding: 10px 5% 0;
+            }
+            #main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 5px;
+            }
+            body {
+                padding-top: 130px; 
+            }
+            #logo {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="header-content">
+            <div id="logo">
+                <svg width="250" height="50" viewBox="0 0 250 50" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00C6FF;stop-opacity:1" /> <stop offset="100%" style="stop-color:#9D00FF;stop-opacity:1" /> </linearGradient>
+                    </defs>
+                    
+                    <path d="M10 35 Q 25 10, 40 35" stroke="url(#logo-gradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M20 35 Q 35 20, 50 35" stroke="url(#logo-gradient)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+                    
+                    <text x="55" y="35" font-family="'Montserrat', sans-serif" font-weight="900" font-size="24" fill="url(#logo-gradient)" letter-spacing="-1">
+                        CONEXIÓN
+                    </text>
+                    <text x="195" y="35" font-family="'Montserrat', sans-serif" font-weight="400" font-size="24" fill="#EDEDED">
+                        SLP
+                    </text>
+                </svg>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#precios">Planes</a></li>
+                    <li><a href="#residencial">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.9em;">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="container-fluid">
+        <div id="home-content">
+            <h1>La Fibra Óptica más Rápida de San Luis Potosí.</h1>
+            <p>Conexión estable, **precios mexicanos razonables** y soporte técnico 100% local. ¡Elige la velocidad que tu vida necesita!</p>
+            <a href="#precios" class="btn btn-primary">¡Contrata Ahora!</a>
+        </div>
+    </section>
+    
+    <section id="residencial" class="container">
+        <h2>Internet Residencial de Alta Velocidad</h2>
+        <div class="card" style="padding: 40px;">
+            <p style="font-size: 1.1em; text-align: center;">En **Conexión SLP** llevamos la fibra óptica pura directamente a tu hogar. Diseñamos nuestros planes para soportar múltiples dispositivos, garantizando una experiencia fluida para **Streaming 4K, Gaming y Home Office** sin interrupciones.</p>
+            
+            <div class="grid-3-col" style="margin-top: 40px;">
+                <div style="padding: 15px;">
+                    <h3 style="color: var(--texto-claro);">Velocidad Extrema</h3>
+                    <p><img src="https://api.iconify.design/heroicons-solid/lightning-bolt.svg?color=%23FF3B3B" alt="Icono de velocidad" class="animated-icon" style="width: 80px; margin-bottom: 10px;"></p>
+                    <p>Descargas casi instantáneas, a la velocidad de la luz. Rendimiento sin igual.</p>
+                </div>
+                <div style="padding: 15px;">
+                    <h3 style="color: var(--texto-claro);">Conexión Estable</h3>
+                    <p><img src="https://api.iconify.design/heroicons-solid/shield-check.svg?color=%23FF3B3B" alt="Icono de estabilidad" class="animated-icon" style="width: 80px; margin-bottom: 10px;"></p>
+                    <p>Baja latencia y cero interferencias. La estabilidad que necesitas para videollamadas.</p>
+                </div>
+                <div style="padding: 15px;">
+                    <h3 style="color: var(--texto-claro);">Soporte 24/7 Local</h3>
+                    <p><img src="https://api.iconify.design/heroicons-solid/phone.svg?color=%23FF3B3B" alt="Icono de soporte" class="animated-icon" style="width: 80px; margin-bottom: 10px;"></p>
+                    <p>Atención y solución de problemas rápida, con personal y recursos en SLP.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#precios" class="btn btn-secondary">Ver Planes y Precios</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="precios" class="container" style="background-color: var(--fondo-oscuro); margin-top: 50px;">
+        <h2>Planes de Fibra Óptica | Precios Transparentes en MXN</h2>
+        
+        <div class="grid-3-col">
+            <div class="plan-card card">
+                <h3>Básico Residencial</h3>
+                <div class="price">$399.00</div>
+                <p><img src="https://api.iconify.design/heroicons-solid/wifi.svg?color=%23FF3B3B" alt="Icono plan básico" style="width: 80px; margin-bottom: 10px;"></p>
+                <ul>
+                    <li>✅ Navegación y redes sociales</li>
+                    <li>✅ 1-2 Dispositivos, uso ligero</li>
+                    <li>✅ **Instalación Gratuita**</li>
+                </ul>
+                <a href="#contacto" class="btn btn-secondary">Contratar Plan</a>
+            </div>
+            
+            <div class="plan-card card popular">
+                <h3 style="color: var(--acento-rojo);">🚀 ¡POPULAR!</h3>
+                <div class="price">$549.00</div>
+                <p><img src="https://api.iconify.design/heroicons-solid/cloud.svg?color=%23FF3B3B" alt="Icono plan popular" style="width: 80px; margin-bottom: 10px;"></p>
+                <ul>
+                    <li>✅ Streaming 4K y Home Office</li>
+                    <li>✅ 3-5 Dispositivos conectados</li>
+                    <li>✅ **Mejor valor y desempeño**</li>
+                </ul>
+                <a href="#contacto" class="btn btn-primary">¡CONTRATAR AHORA!</a>
+            </div>
+            
+            <div class="plan-card card">
+                <h3>Premium Familiar</h3>
+                <div class="price">$799.00</div>
+                <p><img src="https://api.iconify.design/heroicons-solid/home.svg?color=%23FF3B3B" alt="Icono plan premium" style="width: 80px; margin-bottom: 10px;"></p>
+                <ul>
+                    <li>✅ Gaming de baja latencia</li>
+                    <li>✅ +5 Dispositivos, uso intensivo</li>
+                    <li>✅ Prioridad en soporte técnico</li>
+                </ul>
+                <a href="#contacto" class="btn btn-secondary">Contratar Plan</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding: 20px; border: 1px dashed var(--acento-rojo); border-radius: 8px; background: var(--gris-medio);">
+            <h3 style="color: var(--acento-rojo); margin-top: 0;">Soluciones Empresariales (PYME)</h3>
+            <p><img src="https://api.iconify.design/heroicons-solid/office-building.svg?color=%23FF3B3B" alt="Icono plan empresarial" style="width: 80px; margin-bottom: 10px;"></p>
+            <p>Planes con SLA, IP Fija y velocidades de hasta 1 Gbps. <strong style="color: var(--texto-claro);">Precios competitivos para México.</strong></p>
+            <a href="#contacto" class="btn btn-secondary" style="background: transparent; color: var(--acento-rojo); border-color: var(--acento-rojo); border-radius: 5px;">Solicitar Cotización Empresarial</a>
+        </div>
+    </section>
+
+    <section id="nosotros" class="container">
+        <h2>Nuestra Trayectoria y Compromiso con SLP</h2>
+        <div class="grid-2-col">
+            
+            <div style="text-align: center;">
+                <p style="margin-top: 15px; font-style: italic; color: var(--texto-claro);">Invertimos en infraestructura y talento local.</p>
+            </div>
+            <div>
+                <div class="mission-vision-card">
+                    <img src="https://api.iconify.design/heroicons-solid/flag.svg?color=%23FF3B3B" alt="Icono Misión">
+                    <div>
+                        <h3>Nuestra Misión</h3>
+                        <p>Llevar fibra óptica de alta velocidad a cada rincón de SLP, garantizando una conexión fiable y un servicio de atención al cliente excepcional.</p>
+                    </div>
+                </div>
+                <div class="mission-vision-card">
+                    <img src="https://api.iconify.design/heroicons-solid/eye.svg?color=%23FF3B3B" alt="Icono Visión">
+                    <div>
+                        <h3>Nuestra Visión</h3>
+                        <p>Ser el proveedor líder de telecomunicaciones en San Luis Potosí, reconocido por nuestra innovación, transparencia y compromiso con la comunidad.</p>
+                    </div>
+                </div>
+                <div class="mission-vision-card">
+                    <img src="https://api.iconify.design/heroicons-solid/hand-thumb-up.svg?color=%23FF3B3B" alt="Icono Valores">
+                    <div>
+                        <h3>Nuestros Valores</h3>
+                        <p>Profesionalismo, Transparencia, Innovación, Integridad y Compromiso Social con San Luis Potosí.</p>
+                    </div>
+                </div>
+                <a href="#contacto" class="btn btn-primary" style="margin-top: 20px;">Únase a la Familia Conexión SLP</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="container">
+        <h2>Contacte a Nuestros Expertos y Visítenos</h2>
+        <div class="grid-2-col">
+            <div class="card" style="padding: 30px; border: 1px solid #333;">
+                <h3 style="color: var(--acento-rojo);">Información de Contacto</h3>
+                <p><strong>Teléfono:</strong> <a href="tel:+524448123456" style="font-weight: 700; font-size: 1.2em; color: var(--texto-claro);">(444) 812-3456</a></p>
+                <p><strong>Email:</strong> <a href="mailto:contacto@conexionslp.com.mx" style="color: var(--texto-claro);">contacto@conexionslp.com.mx</a></p>
+                
+                <h3 style="margin-top: 30px; color: var(--acento-rojo);">Dirección y Horario</h3>
+                <p>
+                    **Av. Venustiano Carranza #1234,**
+                    <br>Col. Tequisquiapan, C.P. 78250, S.L.P.
+                </p>
+                <p>Horario: Lun-Vie: 9:00 AM - 6:00 PM</p>
+            </div>
+            <div>
+                <div class="map-placeholder">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1558.0776510167385!2d-100.99268383834165!3d22.15582967156943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842a22026852c00f%3A0x8849646865292671!2sPlaza%20de%20Armas!5e0!3m2!1ses-419!2smx!4v1700688000000!5m2!1ses-419!2smx"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <a href="http://googleusercontent.com/maps.google.com/6" target="_blank" class="btn btn-secondary" style="background: var(--acento-rojo); color: var(--texto-claro); border-color: var(--acento-rojo); width: 100%; text-align: center; border-radius: 5px; margin-top: 15px;">Abrir Ubicación en Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="padding: 20px 0;">
+            <p style="margin: 0; color: var(--texto-claro);">© 2024 Conexión SLP. Todos los derechos reservados. | <a href="#nosotros" style="color: var(--acento-rojo);">Aviso de Privacidad</a></p>
+            <p style="margin-top: 5px; color: var(--texto-claro);">Dirección: Av. V. Carranza #1234, SLP | Teléfono: (444) 812-3456</p>
+        </div>
+    </footer>
+
+</body>
+</html>
